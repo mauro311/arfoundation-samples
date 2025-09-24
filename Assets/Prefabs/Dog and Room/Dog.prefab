@@ -68,13 +68,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1601e16280c8c824698ec0333d0120a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAgent: {fileID: 597207412336485668, guid: 293c66221e1ced04caf220d017ba43c1,
-    type: 3}
-  time: 0
-  time2: 0
-  distance: 0
-  distanceEnemy: 0
-  onAwake: 1
+  checkpoints:
+  - {fileID: 597207412336485668, guid: 293c66221e1ced04caf220d017ba43c1, type: 3}
+  - {fileID: 5572931282190020618, guid: 1434096f4afb5214685b3670caba69fc, type: 3}
+  - {fileID: 7752559933961314486, guid: a0e330c8e0a88044088129e5009864e6, type: 3}
+  - {fileID: 5388384508677937075, guid: e5eedf836ea9e41429344d1dd02ac6a0, type: 3}
 --- !u!1001 &1860349780100065870
 PrefabInstance:
   m_ObjectHideFlags: 0

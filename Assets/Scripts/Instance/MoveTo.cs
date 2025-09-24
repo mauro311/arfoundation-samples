@@ -1,45 +1,38 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class MoveTo : MonoBehaviour
 {
     private NavMeshAgent agent;
-    [SerializeField] Transform targetAgent;
-    [SerializeField] float time;
-    [SerializeField] float time2;
-    [SerializeField] float distance;
-    [SerializeField] float distanceEnemy;
-    [SerializeField] bool onAwake;
+    [SerializeField] List<Transform> checkpoints = new();
+    private int actualCheckpoint = 0;
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        if (onAwake)
-        {
-            agent.SetDestination(targetAgent.position);
-        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!onAwake)
-        {
-            time += Time.deltaTime;
-            distance = Vector3.Distance(transform.position, targetAgent.position);
-            if (time > time2 && distance > distanceEnemy)
-            {
+        CheckpointsMovement();
+    }
 
-                agent.speed = 10;
-                agent.SetDestination(targetAgent.position);
-            }
-            else if (distance <= distanceEnemy)
-            {
-                time = 0;
-                agent.speed = 0;
-            }
+    public void CheckpointsMovement()
+    {
+
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+
+            agent.SetDestination(checkpoints[actualCheckpoint].position);
+            actualCheckpoint++;
+        }
+        else if (actualCheckpoint >= checkpoints.Count)
+        {
+            actualCheckpoint = 0;
         }
     }
 }
